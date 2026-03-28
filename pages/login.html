@@ -6,19 +6,19 @@
     <title> Login </title>
 </head>
 <body>
-    <form method="post">
+    <form action="/" method="post">
         <table>
             <tr>
-                <td><label for="username"> Username : </label></td>
-                <td><input type="text" name="username" id="username"></td>
+                <td><label for="Email"> Email : </label></td>
+                <td><input type="email" name="email" id="email"></td>
             </tr>
             <tr>
                 <td><label for="pwd"> Password : </label> </td>
                 <td><input type="text" name="pwd" id="pwd"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Sign in"></td>
                 <td><a href="/register"> <input type="button" value="Not signed up"> </a></td>
+                <td><input type="submit" value="Sign in"></td>
             </tr>
         </table>
     </form>
