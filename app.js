@@ -2,31 +2,30 @@
 
 const express = require('express');
 const path = require('path');
-
 const app = express();
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/login.html'));
+    res.sendFile(path.join(__dirname, 'pages', 'login.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/register.html'));
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'register.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/admin.html'));
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'admin.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/dashboard.html'));
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'dashboard.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/profile.html'));
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'profile.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/upload.html'));
+app.get('/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'upload.html'));
 });
 
 app.use((req, res) => {
