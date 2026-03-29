@@ -18,8 +18,16 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// Middleware to check login
+function isLoggedIn(req, res, next) {
+    if (req.session.user) {
+        return next();
+    }
+    res.redirect('/');
+}
+
 app.use(authRoutes);
-app.use('/dashboard', dashboardRoutes);
+app.use('/dashboard', isLoggedIn, dashboardRoutes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'login.html'));
@@ -29,15 +37,15 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'register.html'));
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'admin.html'));
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'profile.html'));
 });
 
-app.get('/upload', (req, res) => {
+app.get('/upload', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'upload.html'));
 });
 

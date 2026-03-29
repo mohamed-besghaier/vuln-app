@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Upload & Manage Files</title>
 </head>
+
 <body>
-    <h1>Upload page</h1>
+    <header>
+        <h1>Upload & Manage Files</h1>
+        <nav>
+            <a class="form-link" href="/dashboard">Dashboard</a> |
+            <a class="form-link" href="/profile">Profile</a> |
+            <a class="form-link" id="logout-link" href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Upload Form -->
+        <section class="upload-section">
+            <h2>Upload a File</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data" class="form">
+                <div class="form-group">
+                    <label for="file">Select File:</label>
+                    <input class="form-input" type="file" id="file" name="file">
+                </div>
+                <button class="form-button" type="submit">Upload</button>
+            </form>
+        </section>
+
+        <!-- User Files List -->
+        <section class="user-files">
+            <h2>Your Files</h2>
+            <ul id="file-list">
+                <li class="file-item">
+                    example.pdf
+                    <div class="file-actions">
+                        <button class="form-button">Rename</button>
+                        <button class="form-button">Delete</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="/js/dashboard-actions.js"></script>
+
 </body>
+
 </html>
