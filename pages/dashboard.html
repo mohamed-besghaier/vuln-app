@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <nav>
+            <a href="/profile">Profile</a> |
+            <a href="/upload">Upload</a> |
+            <a href="/">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="user-info">
+            <h2>Your Info</h2>
+            <p>Username: <span id="username"></span></p>
+            <p>Email: <span id="email"></span></p>
+            <p>Phone number: <span id="tel"></span></p>
+        </section>
+
+        <section>
+            <h2>Your Files</h2>
+            <ul>
+                <!-- List uploaded files here -->
+            </ul>
+        </section>
+    </main>
+    <script>
+        fetch('/dashboard/me')
+            .then(res => res.json())
+            .then(user => {
+                document.getElementById('username').innerText = user.username;
+                document.getElementById('email').innerText = user.email;
+                document.getElementById('tel').innerText = user.tel;
+            });
+    </script>
+</body>
+
+</html>

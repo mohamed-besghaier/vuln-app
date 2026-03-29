@@ -38,7 +38,8 @@ router.post('/', (req, res) => {
             if (err) return res.status(500).send('<h1>Database error</h1>');
             if (!user) return res.status(401).send('<h1>Invalid credentials</h1>');
 
-            res.send('<h1>Login successfully</h1>');
+            req.session.user = { id: user.id, username: user.username, tel: user.tel, email: user.email };
+            res.redirect('/dashboard');
         }
     );
 });
