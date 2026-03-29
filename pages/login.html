@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login</title>
 </head>
+
 <body>
-    <form action="/" method="post">
-        <table>
-            <tr>
-                <td><label for="Email"> Email : </label></td>
-                <td><input type="email" name="email" id="email"></td>
-            </tr>
-            <tr>
-                <td><label for="pwd"> Password : </label> </td>
-                <td><input type="text" name="pwd" id="pwd"></td>
-            </tr>
-            <tr>
-                <td><a href="/register"> <input type="button" value="Not signed up"> </a></td>
-                <td><input type="submit" value="Sign in"></td>
-            </tr>
-        </table>
+
+    <form action="/" method="post" class="form">
+        <h2 class="form-title">Login</h2>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input class="form-input" type="password" id="pwd" name="pwd">
+        </div>
+
+        <button class="form-button" type="submit">Log in</button>
+
+        <p>
+            <a class="form-link" href="/register">Don't have an account?</a>
+        </p>
+
     </form>
+
 </body>
+
 </html>

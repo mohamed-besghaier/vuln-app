@@ -4,38 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Register </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Register</title>
 </head>
 
 <body>
-    <form action="/register" method="post">
-        <table>
-            <tr>
-                <td><label for="username">Username:</label></td>
-                <td><input type="text" name="username" id="username"></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td><input type="email" name="email" id="email"></td>
-            </tr>
-            <tr>
-                <td><label for="tel">Phone number:</label></td>
-                <td><input type="tel" name="tel" id="tel"></td>
-            </tr>
-            <tr>
-                <td><label for="pwd">Password:</label></td>
-                <td><input type="text" name="pwd" id="pwd"></td>
-            </tr>
-            <tr>
-                <td><label for="pwd_a">Password (again):</label></td>
-                <td><input type="text" name="pwd_a" id="pwd_a"></td>
-            </tr>
-            <tr>
-                <td><a href="/"> <input type="button" value="Already signed up"> </a></td>
-                <td><input type="submit" value="Sign up"></td>
-            </tr>
-        </table>
+
+    <form action="/register" method="post" class="form">
+        <h2 class="form-title">Register</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-input" type="text" id="username" name="username">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Phone</label>
+            <input class="form-input" type="tel" id="tel" name="tel">
+        </div>
+
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input class="form-input" type="password" id="pwd" name="pwd">
+        </div>
+
+        <div class="form-group">
+            <label for="pwd_a">Confirm Password</label>
+            <input class="form-input" type="password" id="pwd_a" name="pwd_a">
+        </div>
+
+        <button class="form-button" type="submit">Sign up</button>
+
+        <p>
+            <a class="form-link" href="/">Already have an account?</a>
+        </p>
+
     </form>
+
 </body>
 
 </html>
