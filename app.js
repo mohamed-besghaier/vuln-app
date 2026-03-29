@@ -41,8 +41,16 @@ app.get('/upload', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'upload.html'));
 });
 
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.send('Error logging out');
+        console.log("log out succesfully");
+        res.redirect('/');
+    });
+});
+
 app.use((req, res) => {
-  res.status(404).send('<h1> 404 - Page Not Found </h1>');
+    res.status(404).sendFile(path.join(__dirname, 'pages', '404.html'));
 });
 
 const PORT = process.env.PORT || 3000;
