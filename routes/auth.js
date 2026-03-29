@@ -7,7 +7,6 @@ const dbPath = path.join(__dirname, '../db/database.sqlite');
 const db = new sqlite3.Database(dbPath);
 
 // ----------- REGISTER -----------
-
 router.post('/register', (req, res) => {
     const { username, email, tel, pwd, pwd_a } = req.body;
 

@@ -1,5 +1,3 @@
-// app.js
-
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -7,6 +5,7 @@ const app = express();
 
 const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
+const uploadRoutes = require('./routes/upload');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,14 +19,13 @@ app.use(session({
 
 // Middleware to check login
 function isLoggedIn(req, res, next) {
-    if (req.session.user) {
-        return next();
-    }
+    if (req.session.user) return next();
     res.redirect('/');
 }
 
 app.use(authRoutes);
 app.use('/dashboard', isLoggedIn, dashboardRoutes);
+app.use('/upload', isLoggedIn, uploadRoutes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'login.html'));
@@ -45,10 +43,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'profile.html'));
 });
 
-app.get('/upload', isLoggedIn, (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'upload.html'));
-});
-
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) return res.send('Error logging out');
@@ -56,14 +50,12 @@ app.get('/logout', (req, res) => {
     });
 });
 
+// 404 handler
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'pages', '404.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`
-        Server is running on port ${PORT}
-        Click : http://localhost:3000/
-        `);
+    console.log(`Server is running on port ${PORT}\nClick: http://localhost:${PORT}/`);
 });
