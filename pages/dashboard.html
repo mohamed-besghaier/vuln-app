@@ -12,9 +12,9 @@
     <header>
         <h1>Dashboard</h1>
         <nav>
-            <a href="/profile">Profile</a> |
-            <a href="/upload">Upload</a> |
-            <a href="/logout">Logout</a>
+            <a class="form-link" href="/profile">Profile</a> |
+            <a class="form-link" href="/upload">Upload</a> |
+            <a class="form-link" href="/logout" id="logout-link">Logout</a>
         </nav>
     </header>
 
@@ -33,15 +33,8 @@
             </ul>
         </section>
     </main>
-    <script>
-        fetch('/dashboard/me')
-            .then(res => res.json())
-            .then(user => {
-                document.getElementById('username').innerText = user.username;
-                document.getElementById('email').innerText = user.email;
-                document.getElementById('tel').innerText = user.tel;
-            });
-    </script>
+
+    <script src="/js/dashboard-actions.js"></script>
 </body>
 
 </html>

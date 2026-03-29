@@ -44,7 +44,6 @@ app.get('/upload', (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) return res.send('Error logging out');
-        console.log("log out succesfully");
         res.redirect('/');
     });
 });
