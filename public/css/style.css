@@ -69,6 +69,16 @@ section.user-info p {
 
 /* File list */
 
+.file-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.push-right {
+    margin-left: auto; 
+}
+
 ul {
     list-style-type: none;
     padding-left: 0;

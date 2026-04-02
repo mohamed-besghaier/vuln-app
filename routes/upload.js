@@ -60,6 +60,7 @@ router.post('/', upload.single('file'), (req, res) => {
     });
 });
 
+// Download file 
 router.get('/download/:id', (req, res) => {
     const user = req.session.user;
     if (!user) return res.status(401).send('Unauthorized');
@@ -70,6 +71,29 @@ router.get('/download/:id', (req, res) => {
 
         const filePath = path.join(__dirname, '../uploads', file.filepath);
         res.download(filePath, file.filename); // original filename
+    });
+});
+
+// DELETE file
+router.delete('/delete/:id', (req, res) => {
+    const user = req.session.user;
+    if (!user) return res.status(401).json({ success: false, message: 'Unauthorized' });
+
+    const fileId = req.params.id;
+
+    db.get('SELECT filepath FROM files WHERE id = ? AND user_id = ?', [fileId, user.id], (err, file) => {
+        if (err || !file) return res.status(404).json({ success: false, message: 'File not found' });
+
+        const fs = require('fs');
+        const filePath = path.join(__dirname, '../uploads', file.filepath);
+        fs.unlink(filePath, (err) => {
+            if (err) console.error('Failed to delete file from disk:', err);
+
+            db.run('DELETE FROM files WHERE id = ? AND user_id = ?', [fileId, user.id], function(err) {
+                if (err) return res.status(500).json({ success: false, message: 'DB error' });
+                res.json({ success: true });
+            });
+        });
     });
 });
 

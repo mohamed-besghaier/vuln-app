@@ -16,20 +16,48 @@ fetch('/upload/files')
             const item = document.createElement('li');
             item.className = 'file-item';
 
-            // Download link
-            const link = document.createElement('a');
-            link.href = file.url;
-            link.textContent = file.filename;
-            link.target = '_blank';
-            link.className= 'form-link';
+            const fileName = document.createElement('span');
+            fileName.textContent = file.filename;
+            fileName.className = 'file-name';
 
-            item.appendChild(document.createElement('br'));
-            item.appendChild(link);
+            const download_btn = document.createElement('button');
+            download_btn.textContent = 'Download';
+            download_btn.className = 'form-button push-right';
+
+            download_btn.onclick = () => {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.download = file.filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+
+            const delete_btn = document.createElement('button');
+            delete_btn.textContent = 'Delete';
+            delete_btn.className = 'form-button';
+
+            delete_btn.onclick = () => {
+                fetch(`/upload/delete/${file.id}`, { method: 'DELETE' })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            item.remove();
+                        } else {
+                            alert('Failed to delete: ' + data.message);
+                        }
+                    })
+                    .catch(err => console.error(err));
+            };
+
+            item.appendChild(fileName);
+            item.appendChild(download_btn);
+            item.appendChild(delete_btn);
 
             fileList.appendChild(item);
         });
     })
     .catch(() => {
         document.getElementById('file-list').innerHTML =
-            '<li>Could not load files.</li>';
+            '<li class="file-item">Could not load files.</li>';
     });
