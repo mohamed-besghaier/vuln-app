@@ -10,6 +10,7 @@ const uploadRoutes = require('./routes/upload');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(session({
   secret: 'mysecret123',
@@ -17,7 +18,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Middleware to check login
 function isLoggedIn(req, res, next) {
     if (req.session.user) return next();
     res.redirect('/');
@@ -50,7 +50,6 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// 404 handler
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'pages', '404.html'));
 });
